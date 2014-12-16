@@ -28,6 +28,14 @@ template File.join(node['nginx']['dir'], 'sites-available', 'kibana') do
   )
 end
 
+template "#{node['nginx']['dir']}/htpasswd" do
+  variables(username: node['kibana']['nginx']['basic_auth_username'],
+            password: node['kibana']['nginx']['basic_auth_password'])
+  owner node['nginx']['user']
+  group node['nginx']['group']
+  mode 00644
+end
+
 nginx_site 'kibana' do
   enable true
 end
