@@ -31,8 +31,8 @@ template File.join(node['kibana']['base_dir'], config_path) do
   group node['kibana']['group']
   mode '0644'
   variables(
-    'proxy'        => node['kibana']['nginx']['proxy'],
     'proxy_host'   => node['kibana']['nginx']['proxy_host'],
+    'proxy_port'   => node['kibana']['nginx']['proxy_port'],
     'es_port'      => node['kibana']['elasticsearch']['port']
   )
 end
