@@ -18,8 +18,8 @@ function (Settings) {
      * elasticsearch host
      * @type {String}
      */
-    <% if node['kibana']['apache']['proxy'] %>
-    elasticsearch: window.location.protocol + "//" + window.location.hostname,
+    <% if node['kibana']['nginx']['proxy'] %>
+    elasticsearch: "http://<%= @proxy_host %>:<%= @proxy_port %>",
     <% else %>
     elasticsearch: "http://" + window.location.hostname + ":<%= @es_port %>",
     <% end %>
